@@ -1,75 +1,68 @@
-package com.example.lojaonline.entity;
+package com.example.lojaonline.entity.sale;
 
 import java.util.Objects;
 import java.util.UUID;
 
+import com.example.lojaonline.entity.car.Car;
+import com.example.lojaonline.entity.user.User;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_car_picture")
-public class CarPicture {
+@Table(name = "tb_sale")
+public class Sale {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
-	private String imgUrl;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "car_id")
+	@OneToOne
 	private Car car;
+	@ManyToOne
+	private User seller;
 	
-	public CarPicture() {}
-
-
-	public CarPicture(UUID id, String imgUrl, Car car) {
+	public Sale() {}
+	
+	public Sale(UUID id, Car car, User seller) {
 		this.id = id;
-		this.imgUrl = imgUrl;
 		this.car = car;
+		this.seller = seller;
 	}
-
 
 	public UUID getId() {
 		return id;
 	}
 
-
 	public void setId(UUID id) {
 		this.id = id;
 	}
-
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
-
 
 	public Car getCar() {
 		return car;
 	}
 
-
 	public void setCar(Car car) {
 		this.car = car;
 	}
 
+	public User getSeller() {
+		return seller;
+	}
+
+	public void setSeller(User seller) {
+		this.seller = seller;
+	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -79,11 +72,7 @@ public class CarPicture {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CarPicture other = (CarPicture) obj;
+		Sale other = (Sale) obj;
 		return Objects.equals(id, other.id);
-	}
-	
-	
-	
+	}	
 }
-

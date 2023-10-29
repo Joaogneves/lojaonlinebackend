@@ -1,4 +1,4 @@
-package com.example.lojaonline.entity;
+package com.example.lojaonline.entity.car;
 
 
 import java.util.Objects;

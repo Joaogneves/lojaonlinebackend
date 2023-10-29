@@ -8,10 +8,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.lojaonline.entity.Car;
-import com.example.lojaonline.entity.CarOptionals;
-import com.example.lojaonline.entity.CarPicture;
-import com.example.lojaonline.entity.dto.CarCard;
+import com.example.lojaonline.entity.car.Car;
+import com.example.lojaonline.entity.car.CarOptionals;
+import com.example.lojaonline.entity.car.CarPicture;
+import com.example.lojaonline.entity.car.dto.CarCard;
 import com.example.lojaonline.repository.CarOptionalsRepository;
 import com.example.lojaonline.repository.CarPictureRepository;
 import com.example.lojaonline.repository.CarRepository;
@@ -122,7 +122,7 @@ public class CarService {
 		List<Car> cars = repository.findAll();
 		List<CarCard> carCard = new ArrayList<>();
 		for (Car c : cars) {
-			if(c.getName().toLowerCase().contains(carName.toLowerCase())) {
+			if(c.getName().toLowerCase().contains(carName.toLowerCase()) && c.getIsSold() == false && c.getIsDeleted() == false) {
 				CarCard cc = new CarCard();
 				cc.setId(c.getId());
 				cc.setName(c.getName());

@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.lojaonline.entity.Car;
-import com.example.lojaonline.entity.CarOptionals;
-import com.example.lojaonline.entity.CarPicture;
-import com.example.lojaonline.entity.dto.CarCard;
+import com.example.lojaonline.entity.car.Car;
+import com.example.lojaonline.entity.car.CarOptionals;
+import com.example.lojaonline.entity.car.CarPicture;
+import com.example.lojaonline.entity.car.dto.CarCard;
 import com.example.lojaonline.service.CarService;
 
 @RestController

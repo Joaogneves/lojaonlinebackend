@@ -1,11 +1,13 @@
-package com.example.lojaonline.entity;
+package com.example.lojaonline.entity.car;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
-import com.example.lojaonline.entity.enums.CarColor;
-import com.example.lojaonline.entity.enums.FuelType;
-import com.example.lojaonline.entity.enums.TransmissionType;
+import com.example.lojaonline.entity.car.enums.CarColor;
+import com.example.lojaonline.entity.car.enums.FuelType;
+import com.example.lojaonline.entity.car.enums.TransmissionType;
+import com.example.lojaonline.entity.sale.Sale;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -66,12 +68,13 @@ public class Car {
 	@OneToOne(cascade = CascadeType.ALL ,mappedBy = "car", fetch = FetchType.LAZY, orphanRemoval = true)
 	private CarOptionals optionals;
 	
-	
-	
-	public Car(UUID id,String carBrand, String name, String description, Integer carYear, Double price, Boolean isSold,
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL ,mappedBy = "car", fetch = FetchType.LAZY, orphanRemoval = true)
+	private Sale sale;
+
+	public Car(UUID id, String carBrand, String name, String description, Integer carYear, Double price, Boolean isSold,
 			Boolean isDeleted, String pictureUrl, FuelType fuel, TransmissionType transmissionType, CarColor carColor,
-			Integer km, List<CarPicture> pictures, CarOptionals optionals) {
-		super();
+			Integer km, List<CarPicture> pictures, CarOptionals optionals, Sale sale) {
 		this.id = id;
 		this.carBrand = carBrand;
 		this.name = name;
@@ -87,6 +90,7 @@ public class Car {
 		this.km = km;
 		this.pictures = pictures;
 		this.optionals = optionals;
+		this.sale = sale;
 	}
 
 	public Car() {
@@ -211,6 +215,32 @@ public class Car {
 	public void setOptionals(CarOptionals optionals) {
 		this.optionals = optionals;
 	}
+
+	public Sale getSale() {
+		return sale;
+	}
+
+	public void setSale(Sale sale) {
+		this.sale = sale;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	
 	
 }
