@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.lojaonline.entity.user.User;
+import com.example.lojaonline.entity.user.UserDto;
 import com.example.lojaonline.repository.UserRepository;
 
 @Service
@@ -16,5 +17,11 @@ public class UserService {
 	
 	public List<User> getAllUsers() {
 		return repository.findAll();
+	}
+	
+	public UserDto findByCpf(String cpf) {
+		User u = (User) repository.findByCpf(cpf);
+		UserDto dto = new UserDto(u.getFirstName(), u.getLastName());
+		return dto;
 	}
 }

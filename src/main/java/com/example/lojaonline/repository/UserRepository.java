@@ -10,4 +10,5 @@ import com.example.lojaonline.entity.user.User;
 public interface UserRepository extends JpaRepository<User, UUID> {
 
 	UserDetails findByCpf(String cpf);
+	User getByCpf(String cpf);
 }
