@@ -66,6 +66,11 @@ public class CarController {
 		return service.getAllCarsSold();
 	}
 	
+	@GetMapping(value = "solds/{id}")
+	public List<CarCard> getAllBySeller(@PathVariable UUID id) {
+		return service.getAllBySeller(id);
+	}
+	
 	@GetMapping(value = "{id}")
 	public Optional<Car> getCarById(@PathVariable UUID id) {
 		Optional<Car> car = service.getCarById(id);
@@ -89,11 +94,11 @@ public class CarController {
 	}
 	
 	//PUT
-	@PutMapping(value = "{id}")
-	public ResponseEntity<Car> sellCar(@PathVariable UUID id) {
-		Car car = service.getCarById(id).orElseThrow();
+	@PutMapping(value = "/sell")
+	public ResponseEntity<Car> sellCar(@RequestParam UUID carId, @RequestParam UUID userId) {
+		Car car = service.getCarById(carId).orElseThrow();
 		if(!car.getIsSold()) {
-			service.sellCar(id);
+			service.sellCar(carId, userId);
 			return ResponseEntity.status(HttpStatus.OK).body(car);
 		}
 		

@@ -12,9 +12,13 @@ import com.example.lojaonline.entity.car.Car;
 import com.example.lojaonline.entity.car.CarOptionals;
 import com.example.lojaonline.entity.car.CarPicture;
 import com.example.lojaonline.entity.car.dto.CarCard;
+import com.example.lojaonline.entity.sale.Sale;
+import com.example.lojaonline.entity.user.User;
 import com.example.lojaonline.repository.CarOptionalsRepository;
 import com.example.lojaonline.repository.CarPictureRepository;
 import com.example.lojaonline.repository.CarRepository;
+import com.example.lojaonline.repository.SaleRepository;
+import com.example.lojaonline.repository.UserRepository;
 
 @Service
 public class CarService {
@@ -27,6 +31,12 @@ public class CarService {
 	
 	@Autowired
 	private CarOptionalsRepository corepository;
+	
+	@Autowired
+	private UserRepository urepository;
+	
+	@Autowired
+	private SaleRepository srepository;
 	
 	public List<CarCard> getAllCars() {
 		List<Car> cars = repository.findAll();
@@ -64,8 +74,11 @@ public class CarService {
 		repository.save(car);
 	}
 	
-	public void sellCar(UUID id) {
-		Car car = repository.findById(id).orElseThrow();
+	public void sellCar(UUID carId, UUID userId) {
+		Car car = repository.findById(carId).orElseThrow();
+		User user = urepository.findById(userId).orElseThrow();
+		Sale sale = new Sale(car, user);
+		srepository.save(sale);
 		car.sellCar();
 		repository.save(car);
 	}
@@ -116,6 +129,25 @@ public class CarService {
 			}
 		}
 		return carCard;
+	}
+	
+	public List<CarCard> getAllBySeller(UUID id){
+		List<Sale> sale = srepository.findAllBySellerId(id);
+		List<CarCard> cars = new ArrayList<>();
+		for(Sale s : sale) {
+			Car c = s.getCar();
+			CarCard cc = new CarCard(c.getId(), c.getCarBrand(), c.getName(), c.getDescription(), c.getPrice(), c.getPicture(), c.getCarYear(), c.getCarColor().toString());
+			List<CarPicture> cp = c.getPictures();
+			if (!cp.isEmpty()) {
+                cc.setPicture(cp.get(0).getImgUrl() != null ? cp.get(0).getImgUrl() : c.getPicture());
+            }
+			
+			else {
+                cc.setPicture(c.getPicture());
+            }
+			cars.add(cc);
+		}
+		return cars;
 	}
 	
 	public List<CarCard> getAllwith(String carName) {

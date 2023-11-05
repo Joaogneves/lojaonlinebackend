@@ -1,5 +1,7 @@
 package com.example.lojaonline.entity.user;
 
-public record UserDto(String firstName, String lastName) {
+import java.util.UUID;
+
+public record UserDto(UUID id,String firstName, String lastName, String role) {
 
 }

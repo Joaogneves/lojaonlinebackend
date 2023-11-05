@@ -29,6 +29,11 @@ public class Sale {
 	
 	public Sale() {}
 	
+	public Sale(Car car, User seller) {
+		this.car = car;
+		this.seller = seller;
+	}
+
 	public Sale(UUID id, Car car, User seller) {
 		this.id = id;
 		this.car = car;

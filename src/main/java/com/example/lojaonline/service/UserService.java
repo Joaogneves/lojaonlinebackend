@@ -21,7 +21,7 @@ public class UserService {
 	
 	public UserDto findByCpf(String cpf) {
 		User u = (User) repository.findByCpf(cpf);
-		UserDto dto = new UserDto(u.getFirstName(), u.getLastName());
+		UserDto dto = new UserDto(u.getId() ,u.getFirstName(), u.getLastName(), u.getRole().toString());
 		return dto;
 	}
 }
