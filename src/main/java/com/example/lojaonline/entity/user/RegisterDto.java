@@ -1,6 +1,6 @@
 package com.example.lojaonline.entity.user;
 
-import org.hibernate.validator.constraints.br.CPF;
+//import org.hibernate.validator.constraints.br.CPF;
 
 import com.example.lojaonline.entity.user.enums.UserRole;
 

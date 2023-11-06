@@ -5,8 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +33,7 @@ public class AuthenticatorController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity login(@RequestBody @Valid AuthenticatorDto dto) {
+	public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid AuthenticatorDto dto) {
 		var userCpfPassword = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.password());
 		var auth = this.manager.authenticate(userCpfPassword);
 		
@@ -45,7 +43,7 @@ public class AuthenticatorController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity register(@RequestBody @Valid User user) {
+	public ResponseEntity<User> register(@RequestBody @Valid User user) {
 		if(repository.findByCpf(user.getCpf()) != null) return ResponseEntity.badRequest().build();
 		String encriptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPassword(encriptedPassword);
