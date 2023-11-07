@@ -44,6 +44,10 @@ public class User implements UserDetails{
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
+	@Column(nullable = false)
+	private Boolean isInative;
+	@Column(nullable = false)
+	private Boolean isDeleted;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "seller", fetch = FetchType.LAZY, orphanRemoval = true)
@@ -51,20 +55,18 @@ public class User implements UserDetails{
 	
 	public User() {}
 
-	
-	
 	public User(UUID id, String firstName, String lastName, String cpf, String password, UserRole role,
-			List<Sale> sale) {
+			Boolean isInative, Boolean isDeleted, List<Sale> sale) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cpf = cpf;
 		this.password = password;
 		this.role = role;
+		this.isInative = isInative;
+		this.isDeleted = isDeleted;
 		this.sale = sale;
 	}
-
-
 
 	public UUID getId() {
 		return id;
@@ -105,19 +107,30 @@ public class User implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
 	public UserRole getRole() {
 		return role;
 	}
 
-
-
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
 
+	public Boolean getIsInative() {
+		return isInative;
+	}
 
+	public void setIsInative(Boolean isInative) {
+		this.isInative = isInative;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
 	public List<Sale> getSale() {
 		return sale;
@@ -125,6 +138,14 @@ public class User implements UserDetails{
 
 	public void setSale(List<Sale> sale) {
 		this.sale = sale;
+	}
+	
+	public void activeUser() {
+		this.isInative = false;
+	}
+	
+	public void inativeUser() {
+		this.isInative = true;
 	}
 
 	@Override
