@@ -45,5 +45,10 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
+	@PutMapping(value = "setstatus/{id}")
+	public ResponseEntity<UserPasswordDto> Active(@PathVariable UUID id) {
+		service.isActiveSet(id);
+		return ResponseEntity.status(HttpStatus.OK).build();
+	}
 	
 }
