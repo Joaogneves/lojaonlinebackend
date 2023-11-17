@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.example.lojaonline.entity.cliente.address.ClienteAddress;
 import com.example.lojaonline.entity.cliente.enums.Gender;
 import com.example.lojaonline.entity.cliente.enums.MaritalStatus;
+import com.example.lojaonline.entity.sale.Sale;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,12 +58,15 @@ public class Cliente {
 	
 	@OneToOne
 	private ClienteAddress clienteAddres;
+	
+	@OneToOne 
+	private Sale sale;
 
 	public Cliente() {}
 	
 	public Cliente(UUID id, String fullName, String rg, String cpf, String cnh, Date birthdate, String whatsapp,
 			String email, String motherName, String fatherName, String citizenship, MaritalStatus maritalStatus,
-			Gender gender, ClienteAddress clienteAddres) {
+			Gender gender, ClienteAddress clienteAddres, Sale sale) {
 		this.id = id;
 		this.fullName = fullName;
 		this.rg = rg;
@@ -78,6 +82,7 @@ public class Cliente {
 		this.gender = gender;
 		this.isServed = false;
 		this.clienteAddres = clienteAddres;
+		this.sale = sale;
 	}
 
 	public UUID getId() {
@@ -198,6 +203,14 @@ public class Cliente {
 
 	public void setClienteAddres(ClienteAddress clienteAddres) {
 		this.clienteAddres = clienteAddres;
+	}
+
+	public Sale getSale() {
+		return sale;
+	}
+
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 
 	@Override

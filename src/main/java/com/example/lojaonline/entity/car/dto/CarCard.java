@@ -11,12 +11,13 @@ public class CarCard {
 	private String picture;
 	private Integer carYear;
 	private String carColor;
+	private String clienteName;
 
 	public CarCard() {
 	}
 
 	public CarCard(UUID id, String carBrand, String name, String description, Double price, String picture,
-			Integer carYear, String carColor) {
+			Integer carYear, String carColor, String clienteName) {
 		this.id = id;
 		this.carBrand = carBrand;
 		this.name = name;
@@ -25,6 +26,7 @@ public class CarCard {
 		this.picture = picture;
 		this.carYear = carYear;
 		this.carColor = carColor;
+		this.clienteName = clienteName;
 	}
 
 
@@ -91,6 +93,14 @@ public class CarCard {
 
 	public void setCarColor(String carColor) {
 		this.carColor = carColor;
+	}
+
+	public String getClienteName() {
+		return clienteName;
+	}
+
+	public void setClienteName(String clienteName) {
+		this.clienteName = clienteName;
 	}
 }
 

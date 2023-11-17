@@ -95,10 +95,10 @@ public class CarController {
 	
 	//PUT
 	@PutMapping(value = "/sell")
-	public ResponseEntity<Car> sellCar(@RequestParam UUID carId, @RequestParam UUID userId) {
+	public ResponseEntity<Car> sellCar(@RequestParam UUID carId, @RequestParam UUID userId, @RequestParam UUID clienteId) {
 		Car car = service.getCarById(carId).orElseThrow();
 		if(!car.getIsSold()) {
-			service.sellCar(carId, userId);
+			service.sellCar(carId, userId, clienteId);
 			return ResponseEntity.status(HttpStatus.OK).body(car);
 		}
 		

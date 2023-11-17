@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import com.example.lojaonline.entity.car.Car;
+import com.example.lojaonline.entity.cliente.Cliente;
 import com.example.lojaonline.entity.user.User;
 
 import jakarta.persistence.Entity;
@@ -27,17 +28,22 @@ public class Sale {
 	@ManyToOne
 	private User seller;
 	
+	@OneToOne
+	private Cliente cliente;
+	
 	public Sale() {}
 	
-	public Sale(Car car, User seller) {
+	public Sale(Car car, User seller, Cliente cliente) {
 		this.car = car;
 		this.seller = seller;
+		this.cliente = cliente;
 	}
 
-	public Sale(UUID id, Car car, User seller) {
+	public Sale(UUID id, Car car, User seller, Cliente cliente) {
 		this.id = id;
 		this.car = car;
 		this.seller = seller;
+		this.cliente = cliente;
 	}
 
 	public UUID getId() {
@@ -62,6 +68,14 @@ public class Sale {
 
 	public void setSeller(User seller) {
 		this.seller = seller;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
