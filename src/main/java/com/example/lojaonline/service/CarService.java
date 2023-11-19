@@ -87,6 +87,8 @@ public class CarService {
 		srepository.save(sale);
 		car.sellCar();
 		repository.save(car);
+		cliente.setIsServed(true);
+		clienteRepository.save(cliente);
 	}
 
 	public void deleteCar(UUID id) {

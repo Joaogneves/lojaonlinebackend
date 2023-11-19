@@ -54,7 +54,7 @@ public class CarController {
 		service.addOptionals(id, op);
 		return ResponseEntity.ok().body(op);
 	}
-	
+
 	//GET
 	@GetMapping
 	public List<CarCard> getAll() {

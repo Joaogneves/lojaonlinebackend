@@ -50,6 +50,7 @@ public class SecurityConfigurations {
 						.requestMatchers(HttpMethod.OPTIONS, "/clientes/**").permitAll()
 						.requestMatchers(HttpMethod.OPTIONS, "/clientes/{id}").permitAll()
 						.requestMatchers(HttpMethod.OPTIONS, "/clientes/notServed").permitAll()
+						.requestMatchers(HttpMethod.OPTIONS, "clientes/pdf/{id}").permitAll()
 						.requestMatchers(HttpMethod.POST, "/users").authenticated()					
 						.requestMatchers(HttpMethod.GET, "/users/{cpf}").permitAll()
 						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
@@ -76,6 +77,7 @@ public class SecurityConfigurations {
 						.requestMatchers(HttpMethod.GET, "/clientes").hasRole("USER")
 						.requestMatchers(HttpMethod.GET, "/clientes/**").hasRole("USER")
 						.requestMatchers(HttpMethod.GET, "/clientes/notServed").hasRole("USER")
+						.requestMatchers(HttpMethod.GET, "clientes/pdf/{id}").permitAll()
 						.anyRequest().hasRole("USER"))
 				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
 				.build();
