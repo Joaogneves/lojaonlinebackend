@@ -79,6 +79,8 @@ spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/reso
 4. Execute o comando SQL no PostgreSQL para criar o primeiro Usuário ADMIN
 
 ```SQL
+CREATE DATABASE lojacar;
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 INSERT INTO public.tb_user(
