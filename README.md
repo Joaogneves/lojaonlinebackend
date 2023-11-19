@@ -62,8 +62,8 @@ git clone git@github.com:Joaogneves/lojaonlinebackend.git
 
 ```properties
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-spring.datasource.username= 'Seu Usuário do postgreSQL'
-spring.datasource.password= 'Sua senha do PostGreSql'
+spring.datasource.username= 'Seu Usuário do PostgreSQL'
+spring.datasource.password= 'Sua senha do PostgreSQL'
 spring.datasource.url=jdbc:postgresql://localhost:5432/lojacar
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.hibernate.ddl-auto=update
