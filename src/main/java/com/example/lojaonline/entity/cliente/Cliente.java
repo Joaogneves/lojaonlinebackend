@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.example.lojaonline.entity.cliente.address.ClienteAddress;
 import com.example.lojaonline.entity.cliente.enums.Gender;
 import com.example.lojaonline.entity.cliente.enums.MaritalStatus;
@@ -32,6 +34,7 @@ public class Cliente {
 	@Column(nullable = false, unique = true)
 	private String rg;
 	@Column(nullable = false, unique = true)
+	@CPF
 	private String cpf;
 	@Column(nullable = false, unique = true)
 	private String cnh;

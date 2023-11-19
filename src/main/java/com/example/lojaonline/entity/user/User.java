@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.hibernate.validator.constraints.br.CPF;
 //import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -38,6 +39,7 @@ public class User implements UserDetails{
 	@Column(nullable = false)
 	private String lastName;
 	@Column(nullable = false, unique = true)
+	@CPF
 	private String cpf;
 	@Column(nullable = false)
 	private String password;
