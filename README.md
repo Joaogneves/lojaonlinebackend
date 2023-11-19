@@ -59,7 +59,6 @@ git clone git@github.com:Joaogneves/lojaonlinebackend.git
 
 2. Edite o arquivo 'application.properties'
 
-
 ```properties
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.datasource.username= 'Seu Usuário do PostgreSQL'
@@ -72,15 +71,17 @@ spring.jpa.show-sql=true
 api.security.token.secret=${JWT_SECRET:conkeysecret}
 
 spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:src/downloads/
-
 ```
-3. Pode ser startado diretamente da IDE.
-
-4. Execute o comando SQL no PostgreSQL para criar o primeiro Usuário ADMIN
-
+3. Execute o comando SQL no PostgreSQL para criação do banco de dados
+   
 ```SQL
 CREATE DATABASE lojacar;
+```
+5. Pode ser startado diretamente da IDE.
 
+6. Execute o comando SQL no PostgreSQL para criar o primeiro Usuário ADMIN
+
+```SQL
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 INSERT INTO public.tb_user(
@@ -88,7 +89,7 @@ INSERT INTO public.tb_user(
 	VALUES (uuid_generate_v4(), '12345678989', 'User',  false, false,'Admin', '$2a$10$Jfhp2wBrYXrQZnpjmzOG6u4mZplsu3XI2xv0d/1lWdAUd2By9XYZq' , 'ADMIN');
 ```
 
-5. Clone as duas páginas front End para usar o programa com interface gráfica ou teste pelo Postman
+6. Clone as duas páginas front End para usar o programa com interface gráfica ou teste pelo Postman
 
 [FrontEnd Gerenciamento](https://github.com/Joaogneves/lojaonline-vendedor/blob/main/README.md)</br>
 [FrontEnd Loja](https://github.com/Joaogneves/lojaonlinefrontend/blob/main/README.md)</br>
