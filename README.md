@@ -60,7 +60,7 @@ git clone git@github.com:Joaogneves/lojaonlinebackend.git
 2. Edite o arquivo 'application.properties'
 
 
-```bash
+```properties
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.datasource.username= 'Seu Usuário do postgreSQL'
 spring.datasource.password= 'Sua senha do PostGreSql'
