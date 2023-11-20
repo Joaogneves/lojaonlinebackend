@@ -103,6 +103,10 @@ O servidor estará disponível em http://localhost:8080
 - /clientes: Informações sobre clientes.
 - /users: Registro de usuários.
 
+**LOGIN**
+ * **CPF:** *12345678989*
+ * **Senha:** *1234*
+
 ## Contato
 
 Caso de dúvidas ou sugestões fique a vontade para entrar em contato.
