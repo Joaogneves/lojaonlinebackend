@@ -1,10 +1,21 @@
 	package com.example.lojaonline.controller;
 
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.example.lojaonline.entity.cliente.Cliente;
+import com.example.lojaonline.service.ClienteService;
+import com.example.lojaonline.service.Pdf;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,8 +40,13 @@ import com.example.lojaonline.service.CarService;
 @CrossOrigin(origins = "*")
 public class CarController {
 
+	private final String DOWNLOAD_PATH = "src/downloads/";
+
 	@Autowired
 	private CarService service;
+
+	@Autowired
+	private ClienteService cService;
 	
 	//POST
 	@PostMapping
@@ -94,14 +110,32 @@ public class CarController {
 	}
 	
 	//PUT
+	//@PutMapping(value = "/sell")
+	//public ResponseEntity<Car> sellCar(@RequestParam UUID carId, @RequestParam UUID userId, @RequestParam UUID clienteId) {
+	//	Car car = service.getCarById(carId).orElseThrow();
+	//	if(!car.getIsSold()) {
+	//		service.sellCar(carId, userId, clienteId);
+	//		return ResponseEntity.status(HttpStatus.OK).body(car);
+	//	}
+
+	//	return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
+	//}
+
 	@PutMapping(value = "/sell")
-	public ResponseEntity<Car> sellCar(@RequestParam UUID carId, @RequestParam UUID userId, @RequestParam UUID clienteId) {
+	public ResponseEntity<Resource> sellCar(@RequestParam UUID carId, @RequestParam UUID userId, @RequestParam UUID clienteId) throws DocumentException, FileNotFoundException, MalformedURLException, FileNotFoundException, MalformedURLException {
 		Car car = service.getCarById(carId).orElseThrow();
+		Cliente c = cService.findClienteById(clienteId);
 		if(!car.getIsSold()) {
+			Pdf pdf = new Pdf();
+			pdf.createContract(car, c);
 			service.sellCar(carId, userId, clienteId);
-			return ResponseEntity.status(HttpStatus.OK).body(car);
+			Path filePath = Paths.get(DOWNLOAD_PATH, "contract-" + c.getId() + ".pdf");
+			Resource resource = new UrlResource(filePath.toUri());
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + resource.getFilename())
+					.body(resource);
 		}
-		
+
 		return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
 	}
 	

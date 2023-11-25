@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.lojaonline.entity.cliente.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,11 @@ public class ClienteService {
 		aRepository.save(input.getAddress());
 		pkRepository.save(input);
 	}
+
+	public Cliente findClienteById(UUID id) {
+		return cRepository.findById(id).orElseThrow();
+	}
+
 	
 	public List<ClienteAddress> findAllNotServed() { 
 		List<ClienteAddress> clientes = pkRepository.findAll();

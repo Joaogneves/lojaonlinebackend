@@ -1,0 +1,45 @@
+VENDEDOR: Concessionaria 47.349.492/0001-99 Rua da Concessionária, 123
+
+COMPRADOR: $CLIENTE_NOME, $CLIENTE_CPF
+
+Pelo presente instrumento, as partes supra citadas têm entre si justo e contratado a venda de um veículo $CAR_MODELO, nos seguintes termos:
+
+1.   O veículo é de propriedade do VENDEDOR, que comprova ao COMPRADOR mediante entrega do certificado número (Número do Certificado do Veículo) expedido pela DETRAN, totalmente livre e desembaraçado de quaisquer ônus.
+
+2.   O preço total do veículo é de R$ $CAR_PRICE.
+
+3.   O comprador pagará o veículo nas seguintes condições:
+
+3.1  - R$ $CAR_PRICE, mediante pagamento á vista, representado por (dinheiro ou cheque - no caso de ser cheque, especificar o número e o banco do mesmo).
+
+3.2  - A quitação do presente negócio, quando efetivada por cheque, ocorrerá somente após a compensação do (s) mesmo (s).
+
+4.   As multas, impostos e taxas não quitados e incidentes sobre o veículo objeto do presente contrato, até a presente data, são de inteira e exclusiva responsabilidade do VENDEDOR, que assume o compromisso de pagar os respectivos montantes e apresentar seus comprovantes ao COMPRADOR no prazo de 5 (cinco) dias, contados a partir da data da assinatura do presente contrato, sob pena de, não o fazendo, declarar-se em moratória perante o COMPRADOR, sujeitando-se ás ações cabíveis de cobrança e execução.
+
+5.   O VENDEDOR apresenta, para concretização do negócio, negativa de multa, expedida pelo DETRAN, assumindo a responsabilidade cível e criminal pela autenticidade do respectivo documento. O COMPRADOR declara ter recebido respectivo documento original, lido e de acordo, sem contudo declinar do direito de cobrança dos eventuais encargos mencionados na cláusula anterior.
+
+6.   O COMPRADOR compromete-se, no prazo de 30 (trinta) dias contados da assinatura do presente contrato, a providenciar, junto ao DETRAN, o registro da respectiva transferência de propriedade, sob pena, de não o fazendo, vir a responder pelos encargos, multas e demais cominações decorrentes de sua omissão.
+
+7.   A entrega do veículo é feita (opção: de imediato ou após a quitação do negócio). (Se feita de imediato a cláusula continua como segue:)  O COMPRADOR declara ter recebido o mesmo mediante vistoria, nada mais tendo a reclamar quanto a estado, conservação ou acessórios, assumindo inteira responsabilidade cível ou criminal pela condução do mesmo, isentando o VENDEDOR de qualquer ônus ou reparação, co-responsabilidade ou participação em qualquer ato em desacordo com o Código Nacional de Trânsito, a partir da efetivação desta entrega. (Se feita após a quitação do negócio, a cláusula continua como segue:) No intervalo entre a data deste contrato e até a entrega do veículo, o VENDEDOR assume a responsabilidade cível ou criminal pela condução do mesmo, isentando o COMPRADOR de qualquer ônus ou reparação, co-responsabilidade ou participação em qualquer ato em desacordo com o Código Nacional de Trânsito, sendo esta responsabilidade transferida ao COMPRADOR somente a partir do ato de entrega do veículo, que será firmado no verso deste contrato ou em recibo á parte.
+
+8.   Os contratantes assinam por si, seus herdeiros ou sucessores, em caráter irrevogável, o presente contrato, na presença das testemunhas abaixo indicadas, escolhendo o foro e a comarca desta cidade para dirimir quaisquer dúvidas, porventura suscitadas pelo presente documento.
+
+Local e data: ARARAQUARA, $DATE
+
+_________________________________
+
+Concessionaria
+
+_________________________________
+
+$CLIENTE_NOME
+
+Testemunhas:
+
+.............................................................................................................
+
+NOME E RG:
+
+.............................................................................................................
+
+NOME E RG:

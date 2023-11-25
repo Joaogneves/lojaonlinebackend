@@ -1,21 +1,20 @@
 package com.example.lojaonline.service;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 import javax.swing.text.MaskFormatter;
 
+import com.example.lojaonline.entity.car.Car;
+import com.example.lojaonline.entity.cliente.Cliente;
 import com.example.lojaonline.entity.cliente.address.ClienteAddress;
-import com.lowagie.text.Chunk;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
-import com.lowagie.text.Font;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Paragraph;
+import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class Pdf {
@@ -139,6 +138,42 @@ public class Pdf {
 			return mask.valueToString(value);
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	public void createContract(Car car, Cliente c) throws DocumentException, FileNotFoundException {
+		File file = new File("src\\main\\resources\\contract.txt");
+		Scanner sc = null;
+		Document doc = new Document(PageSize.A4);
+		PdfWriter.getInstance(doc, new FileOutputStream("src\\downloads\\contract-" + c.getId() +".pdf"));
+		doc.open();
+		try {
+			sc = new Scanner(file, StandardCharsets.UTF_8);
+			while (sc.hasNextLine()) {
+				SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+				String line = sc.nextLine();
+				line = line.replace("$CLIENTE_NOME", c.getFullName());
+				line = line.replace("$CLIENTE_CPF", c.getCpf());
+				line = line.replace("$CAR_PRICE", car.getPrice().toString());
+				line = line.replace("$CAR_MODELO", car.getCarBrand() + " " + car.getName() + " " + car.getCarYear());
+				Date td = new Date();
+				line = line.replace("$DATE", fmt.format(td));
+				byte[] bytes = line.getBytes(StandardCharsets.UTF_8);
+				String textF = new String(bytes, StandardCharsets.UTF_8);
+				System.out.println(textF);
+				Paragraph p = new Paragraph();
+				p.add(new Phrase(textF));
+				p.setSpacingAfter(10);
+				doc.add(p);
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getLocalizedMessage());
+		} finally {
+			if(sc != null) {
+				doc.close();
+				sc.close();
+			}
 		}
 	}
 }
