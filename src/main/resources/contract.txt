@@ -2,15 +2,15 @@ VENDEDOR: Concessionaria 47.349.492/0001-99 Rua da Concessionária, 123
 
 COMPRADOR: $CLIENTE_NOME, $CLIENTE_CPF
 
-Pelo presente instrumento, as partes supra citadas têm entre si justo e contratado a venda de um veículo $CAR_MODELO, nos seguintes termos:
+Pelo presente instrumento, as partes supra citadas têm entre si justo e contratado a venda de um veículo $CAR_MODELO, placa $CAR_PLACA, nos seguintes termos:
 
-1.   O veículo é de propriedade do VENDEDOR, que comprova ao COMPRADOR mediante entrega do certificado número (Número do Certificado do Veículo) expedido pela DETRAN, totalmente livre e desembaraçado de quaisquer ônus.
+1.   O veículo é de propriedade do VENDEDOR, que comprova ao COMPRADOR mediante entrega do certificado número $CAR_RENAVAN expedido pela DETRAN, totalmente livre e desembaraçado de quaisquer ônus.
 
 2.   O preço total do veículo é de R$ $CAR_PRICE.
 
 3.   O comprador pagará o veículo nas seguintes condições:
 
-3.1  - R$ $CAR_PRICE, mediante pagamento á vista, representado por (dinheiro ou cheque - no caso de ser cheque, especificar o número e o banco do mesmo).
+3.1  - R$ $CAR_PRICE. Mediante pagamento á vista, representado por (dinheiro ou cheque - no caso de ser cheque, especificar o número e o banco do mesmo).
 
 3.2  - A quitação do presente negócio, quando efetivada por cheque, ocorrerá somente após a compensação do (s) mesmo (s).
 

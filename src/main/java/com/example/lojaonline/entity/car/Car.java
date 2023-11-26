@@ -58,7 +58,10 @@ public class Car {
 	private CarColor carColor;
 	@Column(nullable = true)
 	private Integer km;
-	
+	@Column(nullable = false, length = 11)
+	private String renavan;
+	@Column(nullable = true, length = 7)
+	private String placa;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "car", fetch = FetchType.LAZY, orphanRemoval = true)
@@ -72,9 +75,7 @@ public class Car {
 	@OneToOne(cascade = CascadeType.ALL ,mappedBy = "car", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Sale sale;
 
-	public Car(UUID id, String carBrand, String name, String description, Integer carYear, Double price, Boolean isSold,
-			Boolean isDeleted, String pictureUrl, FuelType fuel, TransmissionType transmissionType, CarColor carColor,
-			Integer km, List<CarPicture> pictures, CarOptionals optionals, Sale sale) {
+	public Car(UUID id, String carBrand, String name, String description, Integer carYear, Double price, Boolean isSold, Boolean isDeleted, String pictureUrl, FuelType fuel, TransmissionType transmissionType, CarColor carColor, Integer km, String renavan, String placa, List<CarPicture> pictures, CarOptionals optionals, Sale sale) {
 		this.id = id;
 		this.carBrand = carBrand;
 		this.name = name;
@@ -88,6 +89,8 @@ public class Car {
 		this.transmissionType = transmissionType;
 		this.carColor = carColor;
 		this.km = km;
+		this.renavan = renavan;
+		this.placa = placa;
 		this.pictures = pictures;
 		this.optionals = optionals;
 		this.sale = sale;
@@ -222,6 +225,38 @@ public class Car {
 
 	public void setSale(Sale sale) {
 		this.sale = sale;
+	}
+
+	public Boolean getSold() {
+		return isSold;
+	}
+
+	public void setSold(Boolean sold) {
+		isSold = sold;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
+	}
+
+	public String getRenavan() {
+		return renavan;
+	}
+
+	public void setRenavan(String renavan) {
+		this.renavan = renavan;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
 	@Override

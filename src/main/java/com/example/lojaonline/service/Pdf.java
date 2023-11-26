@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,8 +24,6 @@ public class Pdf {
 		Document doc = new Document(PageSize.A4);
 		Font fontBold = new Font(Font.HELVETICA, 22, Font.BOLDITALIC);
 		Font fontNormal = new Font(Font.HELVETICA, 18, Font.NORMAL);
-		// PdfWriter.getInstance(doc, new FileOutputStream("d:\\Ficha - "+
-		// ca.getCliente().getFullName() +".pdf"));
 		PdfWriter.getInstance(doc, new FileOutputStream("src\\downloads\\Ficha-" + ca.getId() + ".pdf"));
 		doc.open();
 		Paragraph header = new Paragraph();
@@ -154,13 +153,18 @@ public class Pdf {
 				String line = sc.nextLine();
 				line = line.replace("$CLIENTE_NOME", c.getFullName());
 				line = line.replace("$CLIENTE_CPF", c.getCpf());
-				line = line.replace("$CAR_PRICE", car.getPrice().toString());
+				DecimalFormat f = new DecimalFormat("#.##");
+				String nf = f.format(car.getPrice());
+				line = line.replace("$CAR_PRICE", nf + ",00");
 				line = line.replace("$CAR_MODELO", car.getCarBrand() + " " + car.getName() + " " + car.getCarYear());
+				String pattern = "UUU-AAAA";
+				String fstring = car.getPlaca();
+				line = line.replace("$CAR_PLACA", format(pattern, fstring));
+				line = line.replace("$CAR_RENAVAN", car.getRenavan());
 				Date td = new Date();
 				line = line.replace("$DATE", fmt.format(td));
 				byte[] bytes = line.getBytes(StandardCharsets.UTF_8);
 				String textF = new String(bytes, StandardCharsets.UTF_8);
-				System.out.println(textF);
 				Paragraph p = new Paragraph();
 				p.add(new Phrase(textF));
 				p.setSpacingAfter(10);

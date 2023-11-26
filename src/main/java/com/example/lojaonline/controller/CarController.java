@@ -110,17 +110,6 @@ public class CarController {
 	}
 	
 	//PUT
-	//@PutMapping(value = "/sell")
-	//public ResponseEntity<Car> sellCar(@RequestParam UUID carId, @RequestParam UUID userId, @RequestParam UUID clienteId) {
-	//	Car car = service.getCarById(carId).orElseThrow();
-	//	if(!car.getIsSold()) {
-	//		service.sellCar(carId, userId, clienteId);
-	//		return ResponseEntity.status(HttpStatus.OK).body(car);
-	//	}
-
-	//	return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
-	//}
-
 	@PutMapping(value = "/sell")
 	public ResponseEntity<Resource> sellCar(@RequestParam UUID carId, @RequestParam UUID userId, @RequestParam UUID clienteId) throws DocumentException, FileNotFoundException, MalformedURLException, FileNotFoundException, MalformedURLException {
 		Car car = service.getCarById(carId).orElseThrow();
